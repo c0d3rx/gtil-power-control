@@ -1,1 +1,2 @@
 testfile3
+2.86 volt rms secondario
