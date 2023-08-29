@@ -38,7 +38,8 @@ void setup() {
     while (1);
   }
   
-  ModbusRTUServer.configureHoldingRegisters(0x00, 2);  
+  ModbusRTUServer.configureHoldingRegisters(0x00, 2);
+  ModbusRTUServer.holdingRegisterWrite(0, topMicroseconds);  
 
 
 }
@@ -53,8 +54,5 @@ void loop() {
       rawValue = ModbusRTUServer.holdingRegisterRead(0);
       uint32_t period = ((F_CPU / 1000000)* rawValue) / prescaler ;
       OCR1A = period;
-    }
-
-    
-  
+    }  
 }
