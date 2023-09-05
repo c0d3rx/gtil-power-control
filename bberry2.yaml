@@ -1,0 +1,41 @@
+gtil2-moc-control:
+  modbusclient:
+    port: /dev/tty_gtil2
+    baudrate: 9600
+    timeout: 0.5
+
+  modbus_unit: 1
+  turns: 100
+  voltage: 230
+  max_pwr: 800
+  vpk: 4.0
+  vtriac: 1.25
+  load_resistor: 63 # ohms, rload + rcoil ( r coil= 7.5 ohm )
+  zcd_delay: 400 # considerare tau = L/R bobina
+
+
+# logging
+logging:
+  version: 1
+  disable_existing_loggers: true
+  formatters:
+    standard:
+      format: "%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(message)s"
+
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: DEBUG
+      formatter: standard
+      stream: ext://sys.stdout
+  loggers:
+    bberry2:
+      handlers: [console]
+      level: DEBUG
+    gtil2:
+      handlers: [console, file]
+      level: DEBUG
+
+
+
+
